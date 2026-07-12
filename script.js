@@ -42,3 +42,23 @@ document.querySelectorAll('.entry-toggle').forEach(btn => {
     btn.setAttribute('aria-expanded', String(!isOpen));
   });
 });
+
+// Mobile navigation toggle
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.navlinks');
+
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!isExpanded));
+    navLinks.classList.toggle('active');
+  });
+
+  // Close mobile menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navLinks.classList.remove('active');
+    });
+  });
+}
